@@ -1,55 +1,60 @@
-import { writeFile, readFile, writeFileSync, readFileSync, appendFile, unlink, mkdir, readdir, rmdir, rm } from "fs";
-import os from 'os';
+import {
+    writeFile,
+    readFile,
+    writeFileSync,
+    readFileSync,
+    appendFile,
+    unlink,
+    mkdir,
+    readdir,
+    rmdir,
+    rm,
+} from "fs";
 
-// console.log(os.cpus());
+// let text = readFileSync("./test.txt", "utf-8");
+// console.log(text);
 
-// readFile('./test.txt', 'utf-8', (err, data) => {
+// readFile("./test.txt", "utf-8", (err, data) => {
 //     if (err) {
 //         console.log(err);
 //     } else {
 //         console.log(data);
-//     };
+//     }
 // });
-// let text = readFileSync('./test.txt', 'utf-8');
-// console.log(text);
 
-
-// writeFile('./test.txt', 'Hello From Async writeFile()', (error) => {
+// writeFileSync("./test.txt", "Hello From writeFileSync()");
+// writeFile("./test.txt", "Hello From writeFile()", (error) => {
 //     if (error) {
 //         throw error;
 //     }
-//     console.log('File Written');
+//     console.log("File Written");
 // });
-// writeFileSync('./test.txt', 'Hello From Sync writeFile()');
 
-
-// appendFile('./test.txt', `${Math.floor(Math.random() * 10)}`, (err) => {
+// appendFile("./test.txt", `${Math.floor(Math.random() * 10)}\n`, (err) => {
 //     if (err) {
 //         throw err;
 //     }
-//     console.log('File updated successfully');
+//     console.log("File updated successfully");
 // });
 
-
-// unlink('./test.txt', (error) => {
+// unlink("./test.txt", (error) => {
 //     if (error) {
 //         throw error;
 //     }
-//     console.log('File deleted successfully');
+//     console.log("File deleted successfully");
 // });
 
-
-// mkdir('./folder-1/', { recursive: true }, (err) => {
+// mkdir("./myfolder/", { recursive: true }, (err) => {
 //     throw err;
 // });
 
-// readdir('./a', { recursive: true },  (err, files) => {
+// readdir("./myfolder/", { recursive: true }, (err, files) => {
 //     if (err) {
 //         throw err;
 //     }
 //     console.log(files);
-// }, );
+// });
 
-rm('./a', { recursive: true },(err) => {
-    console.log(err);
-});
+// rm("./myfolder/", { recursive: true }, (err) => {
+//     console.log(err);
+// });

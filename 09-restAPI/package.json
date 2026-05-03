@@ -1,15 +1,18 @@
 {
-    "name": "04-httpserver",
+    "name": "07-restapi",
     "version": "1.0.0",
     "description": "",
     "license": "ISC",
-    "author": "",
+    "author": "Bikram Saha",
     "type": "module",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon index"
+        "start": "nodemon index.js"
     },
     "dependencies": {
+        "ejs": "^5.0.2",
+        "express": "^5.2.1",
+        "mongoose": "^9.4.1",
         "nodemon": "^3.1.14"
     }
 }

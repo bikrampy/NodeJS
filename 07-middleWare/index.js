@@ -4,8 +4,9 @@ import fs from "fs";
 const PORT = 8000;
 const app = express();
 
+// Application Level MW
 app.use((req, res, next) => {
-    const log = `New ${req.method} request from ${req.ip} at ${Date.now()}.\n`;
+    const log = `New ${req.method} request at ${req.url} from ${req.ip} at ${Date.now()}.\n`;
     fs.appendFile("./log.txt", log, (err) => {
         if (err) {
             res.status(404).send("Something went wrong.");
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 
 app.get(
     "/about",
+    // Route Level MW
     (req, res, next) => {
         req.pageBody = "This is the about page...";
         next();

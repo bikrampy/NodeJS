@@ -1,13 +1,12 @@
 {
-  "name": "02-filesystem",
-  "version": "1.0.0",
-  "description": "",
-  "license": "ISC",
-  "author": "Bikram Saha",
-  "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  }
+    "name": "02-filesystem",
+    "version": "1.0.0",
+    "description": "",
+    "license": "ISC",
+    "author": "Bikram Saha",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    }
 }

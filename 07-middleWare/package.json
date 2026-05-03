@@ -1,5 +1,5 @@
 {
-    "name": "04-httpserver",
+    "name": "08-middleware",
     "version": "1.0.0",
     "description": "",
     "license": "ISC",
@@ -10,6 +10,7 @@
         "start": "nodemon index"
     },
     "dependencies": {
+        "express": "^5.2.1",
         "nodemon": "^3.1.14"
     }
 }

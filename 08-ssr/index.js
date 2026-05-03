@@ -12,11 +12,13 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
     res.render("home", {
         websiteName: "Bikram's Hub",
-        userName: "Bikram",
-        userSkills: ["Python", "HTML", "Javascript", "CSS", "React", "Node"],
-        userCity: "Kolkata",
+        authorName: "Bikram",
+        authorSkills: ["Python", "HTML", "Javascript", "CSS", "React", "Node"],
+        authorCity: "Kolkata",
         currentYear: new Date().getFullYear(),
     });
 });
 
-app.listen(8001);
+app.listen(8000, () => {
+    console.log("Server started on port 8000");
+});

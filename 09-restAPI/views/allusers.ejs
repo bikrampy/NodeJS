@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Users</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px auto;
+      max-width: 950px;
+      color: #333;
+      background-color: #f4f7f6;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th {
+      background-color: #f8f9fa;
+      color: #777;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding: 15px;
+      text-align: left;
+      border-bottom: 2px solid #eee;
+    }
+
+    td {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+    }
+
+    .user-link {
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .user-link:hover {
+      text-decoration: underline;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-edit {
+      background-color: #e3f2fd;
+      color: #007BFF;
+    }
+
+    .btn-edit:hover {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    .btn-delete {
+      background-color: #fee;
+      color: #dc3545;
+    }
+
+    .btn-delete:hover {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: #eee;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>User Directory</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Location</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+        <tr>
+          <td>
+
+            <a href="/<%= user._id %>" class="user-link">
+              <%= user.first_name %> <%= user.last_name %>
+            </a>
+          </td>
+          <td>
+            <div style="font-size: 14px;"><%= user.email %></div>
+          </td>
+          <td>
+            <span class="badge"><%= user.city %></span>
+          </td>
+          <td class="actions">
+            <a href="/update-user/<%= user._id %>" class="btn btn-edit">Edit</a>
+
+            <form action="/delete-user/<%= user._id %>" method="POST" onsubmit="return confirm('Permanent delete?');">
+              <button type="submit" class="btn btn-delete">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <div style="margin-top: 30px;">
+      <a href="/create-new-user" class="user-link" style="font-size: 14px;">+ Register New User</a>
+    </div>
+  </div>
+</body>
+
+</html>

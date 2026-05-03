@@ -10,14 +10,15 @@
 
 <body>
   <%- include("partials/header") %>
-  <p>Hello, <%= userName %> </p>
+  <p>Hello, My name is <%= authorName %> </p>
+  <p>This is my skillset:</p>
   <ul>
-    <% userSkills.forEach(skill => { %>
+    <% authorSkills.forEach(skill => { %>
     <li><%= skill %></li>
     <% }) %>
   </ul>
-  <% if (userCity) { %>
-  <p>You are from <%= userCity %>.</p>
+  <% if (authorCity) { %>
+  <p>I am from <%= authorCity %>.</p>
   <% } else { %>
   <p>No location provided.</p>
   <% } %>
