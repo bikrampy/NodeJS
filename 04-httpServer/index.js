@@ -1,11 +1,12 @@
 import http from "http";
 import fs from "fs";
+
 import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const logPath = path.join(__dirname, "log", "log.txt");
+const logPath = path.join(__dirname, "logs", "log.txt");
 const server = http.createServer((req, res) => {
     let log = `New Request From ${req.socket.remoteAddress} for ${req.url} at ${Date.now()}\n`;
     fs.appendFile(logPath, log, (err) => {
@@ -62,6 +63,7 @@ const server = http.createServer((req, res) => {
             break;
 
         default:
+            res.setHeader("Content-Type", "text/plain");
             res.end("404 Not Found");
     }
 

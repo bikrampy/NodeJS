@@ -1,18 +1,18 @@
+import dotenv from "dotenv";
+dotenv.config({ override: true });
 // console.log(global);
 // console.log(process);
 // console.log(process.argv);
 // console.log(process.env);
 
-// CJS, works when "type": "commonjs"
+// CJS, "type": "commonjs"
 // let {add, sub} = require('./math');
 // console.log(add(10, 10));
 // console.log(sub(10, 10));
-
-// Works only with CJS
 // console.log(__dirname);
 // console.log(__filename);
 
-// ESM, works when "type": "module"
+// ESM, "type": "module"
 // import { add, sub } from "./math.js";
 // try {
 //     console.log(add(1));

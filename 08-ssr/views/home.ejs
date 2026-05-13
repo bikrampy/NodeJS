@@ -10,18 +10,30 @@
 
 <body>
   <%- include("partials/header") %>
-  <p>Hello, My name is <%= authorName %> </p>
-  <p>This is my skillset:</p>
-  <ul>
-    <% authorSkills.forEach(skill => { %>
-    <li><%= skill %></li>
-    <% }) %>
-  </ul>
-  <% if (authorCity) { %>
-  <p>I am from <%= authorCity %>.</p>
-  <% } else { %>
-  <p>No location provided.</p>
-  <% } %>
+  <main class="content-wrapper">
+    <p>Hello, My name is <%= authorName %> </p>
+
+    <p>This is my skillset:</p>
+    <ul>
+      <% authorSkills.forEach(skill => { %>
+      <li><%= skill %></li>
+      <% }) %>
+    </ul>
+
+    <% if (authorCity) { %>
+    <p>I am from <%= authorCity %>.</p>
+    <% } else { %>
+    <p>No location provided.</p>
+    <% } %>
+
+    <% const favouriteFoods = ["Mutton Kasha", "Fried Rice", "Biriyani"]; %>
+    <p>These are my favourite foods: </p>
+    <ul>
+      <% favouriteFoods.forEach(food => { %>
+      <li><%= food %></li>
+      <% }) %>
+    </ul>
+  </main>
   <%- include("partials/footer") %>
 </body>
 

@@ -11,10 +11,10 @@ import {
     rm,
 } from "fs";
 
-// let text = readFileSync("./test.txt", "utf-8");
+// let text = readFileSync("./readFile.txt", "utf-8");
 // console.log(text);
 
-// readFile("./test.txt", "utf-8", (err, data) => {
+// readFile("./readFile.txt", "utf-8", (err, data) => {
 //     if (err) {
 //         console.log(err);
 //     } else {
@@ -22,39 +22,52 @@ import {
 //     }
 // });
 
-// writeFileSync("./test.txt", "Hello From writeFileSync()");
-// writeFile("./test.txt", "Hello From writeFile()", (error) => {
+// writeFileSync("./writeFile.txt", "Hello From writeFileSync()");
+// writeFile("./writeFile.txt", "Hello From async writeFile()", (error) => {
 //     if (error) {
 //         throw error;
 //     }
 //     console.log("File Written");
 // });
 
-// appendFile("./test.txt", `${Math.floor(Math.random() * 10)}\n`, (err) => {
-//     if (err) {
-//         throw err;
-//     }
-//     console.log("File updated successfully");
-// });
+// appendFile(
+//     "./writeFile.txt",
+//     `\n${Math.floor(Math.random() * 10)}\n`,
+//     (err) => {
+//         if (err) {
+//             throw err;
+//         }
+//         console.log("File updated successfully");
+//     },
+// );
 
-// unlink("./test.txt", (error) => {
+// unlink("./writeFile.txt", (error) => {
 //     if (error) {
 //         throw error;
 //     }
 //     console.log("File deleted successfully");
 // });
 
-// mkdir("./myfolder/", { recursive: true }, (err) => {
+// mkdir("./newdir/", { recursive: true }, (err) => {
 //     throw err;
 // });
 
-// readdir("./myfolder/", { recursive: true }, (err, files) => {
+// readdir("./newdir/", { recursive: true }, (err, files) => {
 //     if (err) {
 //         throw err;
 //     }
 //     console.log(files);
+//     for (const file of files) {
+//         readFile(`./newdir/${file}`, "utf-8", (err, data) => {
+//             if (err) {
+//                 console.log(err);
+//             } else {
+//                 console.log(data);
+//             }
+//         });
+//     }
 // });
 
-// rm("./myfolder/", { recursive: true }, (err) => {
+// rm("./newdir/", { recursive: true }, (err) => {
 //     console.log(err);
 // });
