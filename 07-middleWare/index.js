@@ -1,13 +1,19 @@
 import express from "express";
 import fs from "fs";
 
+import { fileURLToPath } from "url";
+import path from "path";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const PORT = 8000;
 const app = express();
 
 // Application Level MW
 app.use((req, res, next) => {
-    const log = `New ${req.method} request at ${req.url} from ${req.ip} at ${Date.now()}.\n`;
-    fs.appendFile("./log.txt", log, (err) => {
+    const log = `New ${req.method} request at ${req.url} from ${req.ip} at ${new Date()}.\n`;
+    const logFile = path.join(__dirname, "logs", "log.txt");
+    fs.appendFile(logFile, log, (err) => {
         if (err) {
             res.status(404).send("Something went wrong.");
         } else {

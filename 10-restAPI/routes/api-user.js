@@ -6,7 +6,7 @@ import {
 
 const apiUserRouter = express.Router();
 
-apiUserRouter.route("/").get(handleGetAllUser);
+apiUserRouter.route("/users").get(handleGetAllUser);
 apiUserRouter.route("/:id").get(handleGetUserById);
 
 export default apiUserRouter;

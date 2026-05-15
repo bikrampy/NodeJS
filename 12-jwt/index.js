@@ -1,14 +1,20 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
+
+import dotenv from "dotenv";
+dotenv.config();
+
+import { connectMongoDB } from "./connection.js";
+
+import { checkAuth } from "./middlewares/auth.js";
+
 import authRoutes from "./routes/auth.js";
 import profileRoutes from "./routes/profile.js";
-import { connectMongoDB } from "./connection.js";
-import { checkAuth } from "./middlewares/auth.js";
 
 const app = express();
 
-connectMongoDB("mongodb://127.0.0.1:27017/auth-db").then((data) => {
+connectMongoDB("mongodb://127.0.0.1:27017/jwt-db").then((data) => {
     console.log("MongoDB connected successfully.");
 });
 
@@ -19,6 +25,8 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 app.use("/", authRoutes);
-app.use("/profile", checkAuth, profileRoutes);
+app.use("/", checkAuth, profileRoutes);
 
-app.listen(8000, () => console.log("Server running"));
+app.listen(8000, () => {
+    console.log("Server running on port 8000");
+});

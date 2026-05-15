@@ -1,5 +1,0 @@
-New GET request at / from ::1 at 1777819202607.
-New GET request at /favicon.ico from ::1 at 1777819202634.
-New GET request at /about from ::1 at 1777819211686.
-New GET request at /about from ::1 at 1777819214633.
-New GET request at /favicon.ico from ::1 at 1777819214656.

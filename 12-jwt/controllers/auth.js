@@ -1,7 +1,8 @@
-import { v4 as uuidv4 } from "uuid";
+import dotenv from "dotenv";
+dotenv.config();
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import User from "../models/user.js";
-import { sessions } from "../session.js";
 
 export async function handleSignup(req, res) {
     try {
@@ -32,17 +33,21 @@ export async function handleLogin(req, res) {
         if (!isMatch) {
             return res.send("Invalid credentials");
         }
-        const sessionId = uuidv4();
-        sessions.set(sessionId, {
-            user,
-            expiresAt: Date.now() + 60 * 1000,
-        });
-        res.cookie("uid", sessionId, {
+        console.log(process.env.SECRET_KEY);
+        const token = jwt.sign(
+            {
+                userId: user._id,
+                first_name: user.first_name,
+                email: user.email,
+            },
+            process.env.SECRET_KEY,
+            { expiresIn: 60 },
+        );
+        res.cookie("token", token, {
             httpOnly: true,
-            sameSite: "lax",
             maxAge: 60 * 1000,
         });
-        return res.redirect("/profile");
+        return res.redirect("/");
     } catch (error) {
         return res.status(500).send("Login failed");
     }
@@ -50,11 +55,7 @@ export async function handleLogin(req, res) {
 
 export function handleLogout(req, res) {
     try {
-        const sessionId = req.cookies.uid;
-        if (sessionId) {
-            sessions.delete(sessionId);
-        }
-        res.clearCookie("uid");
+        res.clearCookie("token");
         return res.redirect("/login");
     } catch (error) {
         return res.status(500).send("Logout failed");

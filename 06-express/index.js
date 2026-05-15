@@ -1,7 +1,7 @@
 import express from "express";
-import fs from "fs";
-import path from "path";
+
 import { fileURLToPath } from "url";
+import path from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,7 +32,7 @@ app.get("/about", (req, res) => {
     res.status(200).sendFile(aboutPage);
 });
 
-app.get("/author", (req, res) => {
+app.get("/api/author", (req, res) => {
     return res.json({
         name: "Bikram Saha",
         role: "Backend Developer",
@@ -40,7 +40,7 @@ app.get("/author", (req, res) => {
 });
 
 app.get("/authorimage", (req, res) => {
-    const userImage = path.join(__dirname, "views", "Photo.jpg");
+    const userImage = path.join(__dirname, "views", "photo.jpg");
     res.status(200).sendFile(userImage);
 });
 
@@ -52,9 +52,9 @@ app.get("/greet/:name", (req, res) => {
 app.get("/search", (req, res) => {
     let { id } = req.query;
     if (id) {
-        res.status(200).send(`Product id is ${id}.`);
+        res.status(200).send(`Product id is ${id}`);
     } else {
-        res.status(404).send("No product id found");
+        res.status(404).send("No product found");
     }
 });
 
