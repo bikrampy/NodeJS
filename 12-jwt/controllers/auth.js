@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
 import User from "../models/user.js";
 
 export async function handleSignup(req, res) {
@@ -33,7 +34,6 @@ export async function handleLogin(req, res) {
         if (!isMatch) {
             return res.send("Invalid credentials");
         }
-        console.log(process.env.SECRET_KEY);
         const token = jwt.sign(
             {
                 userId: user._id,
@@ -41,11 +41,11 @@ export async function handleLogin(req, res) {
                 email: user.email,
             },
             process.env.SECRET_KEY,
-            { expiresIn: 60 },
+            { expiresIn: 3600 },
         );
         res.cookie("token", token, {
             httpOnly: true,
-            maxAge: 60 * 1000,
+            maxAge: 60 * 60 * 1000,
         });
         return res.redirect("/");
     } catch (error) {

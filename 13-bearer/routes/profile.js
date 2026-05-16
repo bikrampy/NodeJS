@@ -3,7 +3,7 @@ import { checkAuth } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/", checkAuth, (req, res) => {
+router.get("/", (req, res) => {
     console.log("GET Request Received");
     console.log(req.user);
     res.json({

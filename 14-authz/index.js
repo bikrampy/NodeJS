@@ -1,13 +1,17 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
-import authRoutes from "./routes/auth.js";
-import profileRoutes from "./routes/profile.js";
-import { connectMongoDB } from "./connection.js";
-import { checkAuth } from "./middlewares/auth.js";
-import { checkRole } from "./middlewares/role.js";
 import dotenv from "dotenv";
 dotenv.config();
+
+import authRoutes from "./routes/auth.js";
+import profileRoutes from "./routes/profile.js";
+import adminRoutes from "./routes/admin.js";
+
+import { connectMongoDB } from "./connection.js";
+
+import { checkAuth } from "./middlewares/auth.js";
+import { checkRole } from "./middlewares/role.js";
 
 const app = express();
 
@@ -23,9 +27,9 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 app.use("/", authRoutes);
-app.use("/profile", checkAuth, profileRoutes);
-app.delete("/user/:id", checkAuth, checkRole("admin"), (req, res) => {
-    res.send("Deleted");
-});
+app.use("/", checkAuth, profileRoutes);
+app.use("/admin", checkAuth, checkRole("admin"), adminRoutes);
 
-app.listen(8000, () => console.log("Server running"));
+app.listen(8000, () => {
+    console.log("Server running on port 8000");
+});

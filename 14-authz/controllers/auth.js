@@ -47,7 +47,7 @@ export async function handleLogin(req, res) {
             httpOnly: true,
             maxAge: 60 * 60 * 1000,
         });
-        return res.redirect("/profile");
+        return res.redirect("/");
     } catch (error) {
         return res.status(500).send("Login failed");
     }

@@ -1,10 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
+
 import authRoutes from "./routes/auth.js";
 import profileRoutes from "./routes/profile.js";
-import { connectMongoDB } from "./connection.js";
 
-dotenv.config();
+import { checkAuth } from "./middleware/auth.js";
+
+import { connectMongoDB } from "./connection.js";
 
 const app = express();
 
@@ -15,6 +18,6 @@ connectMongoDB("mongodb://127.0.0.1:27017/bearer-db").then(() =>
 );
 
 app.use("/api/auth", authRoutes);
-app.use("/api/profile", profileRoutes);
+app.use("/api/profile", checkAuth, profileRoutes);
 
 app.listen(8000, () => console.log("Server running"));
